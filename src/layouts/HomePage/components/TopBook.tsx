@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const TopBook = () => {
     return(
@@ -7,7 +8,7 @@ export const TopBook = () => {
                 <div>
                     <h1 className="display-5 fw-bold">Find your next adventure</h1>
                     <p className="col-md-8 fs-4">Where would you like to go next</p>
-                    <a className="btn btn-success" href="#" style={{fontSize:20,backgroundColor:'#049e3a'}}>Explore top book</a>
+                    <Link className="btn btn-success" to="/search" style={{fontSize:20,backgroundColor:'#049e3a'}}>Explore top book</Link>
                 </div>
             </div>
         </div>
