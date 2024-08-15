@@ -1,10 +1,13 @@
+import Cookies from "js-cookie";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Heros = () => {
+    const getCookie = Cookies.get('jwt');
     return(
         <div>
             <div className='d-none d-lg-block'>
-                <div className='row g-0 mt-5'>
+                <div className='row g-0 mt-3'>
                     <div className='col-sm-6 col-md-6'>
                         <div className='col-image-left'></div>
                     </div>
@@ -16,7 +19,12 @@ export const Heros = () => {
                                 Whether it is to learn a new skill or grow within one,
                                 we will be able to provide the top content for you!
                             </p>
-                            <a className="btn buttonCustom" href="#" style={{fontSize:20}}>Sign up</a>
+                            {
+                                getCookie !== undefined ?
+                                <Link className="btn buttonCustom" to="#" style={{fontSize:20}}>Hello</Link>
+                                :
+                                <Link className="btn buttonCustom" to="/login" style={{fontSize:20}}>Sign up</Link>
+                            }
                         </div>
                     </div>
                 </div>

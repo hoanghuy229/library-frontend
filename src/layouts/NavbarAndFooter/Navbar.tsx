@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 export const NavBar = () => {
+
+  const getCookie = Cookies.get('jwt');
+
     return (
         <nav className='navbar navbar-expand-lg navbar-dark main-color py-3'>
         <div className='container-fluid'>
@@ -24,7 +28,12 @@ export const NavBar = () => {
             </ul>
             <ul className='navbar-nav ms-auto'>
               <li className='nave-item m-1'>
-              <NavLink className='btn btn-light' to='/login'>Sign In</NavLink>
+                {
+                  getCookie !== undefined ? 
+                  <NavLink className='btn btn-light' to='#'>hello</NavLink>
+                  :
+                  <NavLink className='btn btn-light' to='/login'>Sign In</NavLink>
+                }
               </li>
             </ul>
           </div>

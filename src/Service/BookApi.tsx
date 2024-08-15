@@ -68,6 +68,38 @@ export async function getCarousel(page:number, size:number):Promise<Result> {
     return {book:loadedBooks, totalPages:responsePages, totalElements:responseElements};
 }
 
+export async function getTopBook():Promise<BookModel[]> {
+
+    let booksResult:BookModel[] = [];
+
+    const baseUrl:string = `http://localhost:8080/api/books/search/findTopRatedBooks`;
+
+    const response = await fetch(baseUrl);
+
+    if(!response.ok){
+        throw new Error('something went wrong !!!');
+    }
+
+    const responseJson = await response.json();
+
+    const responseData = responseJson._embedded.books;
+
+    for(const key in responseData){
+        booksResult.push({
+            id:responseData[key].id,
+            title:responseData[key].title,
+            author:responseData[key].author,
+            description:responseData[key].description,
+            copies:responseData[key].copies,
+            copiesAvailable:responseData[key].copiesAvailable,
+            category:responseData[key].category,
+            image:responseData[key].image,
+        })
+    }
+
+    return booksResult;
+}
+
 export async function findBooks(page:number, size:number, searchUrl:string, categorySelection:string):Promise<Result> {
     
     const loadedBooks:BookModel[] = [];

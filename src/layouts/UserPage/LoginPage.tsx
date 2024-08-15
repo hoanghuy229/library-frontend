@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export const LoginPage = () => {
+  const [login,setLogin] = useState('');
 
-  const handleLogin = (provider:string) => {
+
+  const Login = (provider:string) => {
     window.location.href = `http://localhost:8080/oauth2/authorization/${provider}`;
   }
 
@@ -43,7 +45,7 @@ export const LoginPage = () => {
                             <button 
                                 data-mdb-button-init data-mdb-ripple-init className="btn btn-lg btn-outline-dark" 
                                 style={{width:'350px'}}
-                                onClick={() => handleLogin('google')} 
+                                onClick={() => Login('google')} 
                                 type="button">
                                 <i className="fab fa-google me-3" style={{color:'#dd4b39'}}></i> Sign in with Google
                             </button>
@@ -55,7 +57,7 @@ export const LoginPage = () => {
                             <button 
                                 data-mdb-button-init data-mdb-ripple-init className="btn btn-lg mb-2 btn-outline-dark"
                                 style={{width:'350px'}}
-                                onClick={() => handleLogin('facebook')} 
+                                onClick={() => Login('facebook')} 
                                 type="button">
                                 <i className="fab fa-facebook-f me-3" style={{color:'#3b5998'}}></i>Sign in with Facebook
                             </button>
@@ -67,7 +69,7 @@ export const LoginPage = () => {
                             <button 
                                 data-mdb-button-init data-mdb-ripple-init className="btn btn-lg mb-2 btn-outline-dark"
                                 style={{width:'350px'}} 
-                                onClick={() => handleLogin('github')} 
+                                onClick={() => Login('github')} 
                                 type="button">
                                 <i className="fab fa-github me-3" style={{color:'#181717'}}></i>Sign in with Github
                             </button>

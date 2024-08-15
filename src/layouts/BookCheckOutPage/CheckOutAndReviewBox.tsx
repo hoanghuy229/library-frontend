@@ -1,10 +1,14 @@
 import React from "react";
 import { BookModel } from "../../models/BookModel";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export const CheckOutAndReviewBox:React.FC<{ book?:BookModel }> = (props) => {
+
+    const getCookies = Cookies.get('jwt');
+
     return (
-        <div className='card col-3 container d-flex mb-5'>
+        <div className='card col-3 container d-flex mb-5' style={{width:'350px',height:'550px'}}>
             <div className="card-body container">
                 <div className="mt-3">
                     <p>
@@ -32,7 +36,12 @@ export const CheckOutAndReviewBox:React.FC<{ book?:BookModel }> = (props) => {
                 </p>
                 <p>Sign in to be able to leave a review</p>
                 <hr className="mt-4 mb-5"/>
-                <Link to='#' className="btn buttonCustom btn-lg d-flex justify-content-center align-items-center">Sign in</Link>
+                {
+                    getCookies !== undefined ?
+                    <Link to='#' className="btn buttonCustom btn-lg d-flex justify-content-center align-items-center">Hello</Link>
+                    :
+                    <Link to='/login' className="btn buttonCustom btn-lg d-flex justify-content-center align-items-center">Sign in</Link>
+                }
             </div>
         </div>
     )

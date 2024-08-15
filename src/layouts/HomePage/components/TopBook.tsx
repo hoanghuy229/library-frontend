@@ -8,7 +8,7 @@ export const TopBook = () => {
                 <div>
                     <h1 className="display-5 fw-bold">Find your next adventure</h1>
                     <p className="col-md-8 fs-4">Where would you like to go next</p>
-                    <Link className="btn btn-success" to="/search" style={{fontSize:20,backgroundColor:'#049e3a'}}>Explore top book</Link>
+                    <Link className="btn btn-success" to="/top-books" style={{fontSize:20,backgroundColor:'#049e3a'}}>Explore top book</Link>
                 </div>
             </div>
         </div>

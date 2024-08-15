@@ -1,0 +1,95 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,300,500,700);
+* {
+  box-sizing: border-box;
+}
+
+.containerTopBooks {
+  display: flex;
+  flex-wrap: wrap; /* Cho phép các thẻ card tự động xuống hàng nếu không đủ không gian */
+  justify-content: space-between; /* Đặt khoảng cách đều giữa các thẻ */
+  gap: 20px; /* Khoảng cách giữa các card */
+}
+
+.cardTopBooks {
+  width: 48%; /* Chiếm khoảng 48% chiều rộng để đặt hai card trên cùng một hàng */
+  height: 375px;
+  background: white;
+  margin: 20px 0;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  transition: all 0.3s;
+  display: flex;
+
+  &:hover {
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+}
+
+.photoTopBooks {
+  width: 50%;
+  text-align: center;
+  
+  img {
+    max-height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.descriptionTopBooks {
+  width: 50%;
+  padding: 30px;
+  border-left: 2px solid #efefef;
+  
+  h1 {
+    color: #515151;
+    font-weight: 300;
+    padding-top: 15px;
+    margin: 0;
+    font-size: 30px;
+  }
+  
+  h2 {
+    color: #515151;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  
+  h4 {
+    margin: 0;
+    color: #727272;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 17px;
+  }
+  
+  p {
+    font-size: 12px;
+    line-height: 20px;
+    color: #727272;
+    padding: 20px 0;
+    margin: 0;
+  }
+  
+  button {
+    outline: 0;
+    border: 0;
+    background: none;
+    border: 1px solid #d9d9d9;
+    padding: 8px 0;
+    margin-bottom: 30px;
+    color: #515151;
+    text-transform: uppercase;
+    width: 125px;
+    font-family: inherit;
+    margin-right: 5px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    
+    &:hover {
+      border: 1px solid #049e3a;
+      color: #049e3a;
+      cursor: pointer;
+    }
+  }
+}

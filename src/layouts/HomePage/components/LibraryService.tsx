@@ -1,6 +1,10 @@
+import Cookies from "js-cookie";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const LibraryService = () => {
+    const getCookie = Cookies.get('jwt');
+
     return (
         <div className="container my-5">
             <div className="row p-4 align-items-center border shadow-lg">
@@ -11,7 +15,12 @@ export const LibraryService = () => {
                         send us a personal message!
                     </p>
                     <div className="d-grid gap-2 justify-content-md-start mb-4 mb-lg-3">
-                        <a className="btn buttonCustom" href="#" style={{fontSize:20}}>Sign up</a>
+                    {
+                                getCookie !== undefined ?
+                                <Link className="btn buttonCustom" to="#" style={{fontSize:20}}>Hello</Link>
+                                :
+                                <Link className="btn buttonCustom" to="/login" style={{fontSize:20}}>Sign up</Link>
+                            }
                     </div>
                 </div>
                 <div className="col-lg-4 offset-lg-1 shadow-lg lost-image"></div>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { BookModel } from "../../../models/BookModel";
 import { getCarousel } from "../../../Service/BookApi";
 import { SpinnerLoading } from "../../../utils/SpinnerLoading";
+import { Link } from "react-router-dom";
 
 
 export const Carousel = () => {
@@ -88,9 +89,6 @@ export const Carousel = () => {
                         <span className="carousel-control-next-icon" aria-hidden='true'></span>
                         <span className="visually-hidden">Next</span>
                     </button>
-                </div>
-                <div className="homepage-carousel-title mt-3">
-                    <a className="btn btn-outline-custom" href="#">View more</a>
                 </div>
             </div>
     )
