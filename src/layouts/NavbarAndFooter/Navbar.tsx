@@ -1,10 +1,43 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import Cookies from 'js-cookie';
 
 export const NavBar = () => {
 
-  const getCookie = Cookies.get('jwt');
+  const getJwt = Cookies.get('jwt');
+  const getRole = Cookies.get('role')
+
+
+  const logout = () => {
+    Cookies.remove('jwt');
+    Cookies.remove('role');
+    window.location.href = '/';
+  }
+
+  function render() {
+    if(getJwt !== undefined && getRole === 'ADMIN'){
+     return(
+      <>
+        <li className='nav-item'>
+            <NavLink className='nav-link' to='/shelf'>Shelf</NavLink>
+        </li>
+        <li className='nav-item'>
+          <NavLink className='nav-link' to='/admin'>Admin</NavLink>
+        </li>
+      </>
+     )
+    }
+    else if (getJwt !== undefined && getRole === 'USER'){
+     return(
+      <li className='nav-item'>
+        <NavLink className='nav-link' to='/shelf'>Shelf</NavLink>
+      </li>
+     )
+    }
+    else{
+      return(<></>)
+    }
+  }
 
     return (
         <nav className='navbar navbar-expand-lg navbar-dark main-color py-3'>
@@ -25,14 +58,15 @@ export const NavBar = () => {
               <li className='nav-item'>
                 <NavLink className='nav-link' to='/search'>Search Books</NavLink>
               </li>
+              {render()}
             </ul>
             <ul className='navbar-nav ms-auto'>
               <li className='nave-item m-1'>
                 {
-                  getCookie !== undefined ? 
-                  <NavLink className='btn btn-light' to='#'>hello</NavLink>
+                  getJwt !== undefined ? 
+                  <NavLink className='btn btn-dark' to='#' type="button" onClick={logout}>Log out</NavLink>
                   :
-                  <NavLink className='btn btn-light' to='/login'>Sign In</NavLink>
+                  <NavLink className='btn btn-dark' to='/login' type="button">Sign In</NavLink>
                 }
               </li>
             </ul>

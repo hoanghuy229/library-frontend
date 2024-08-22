@@ -76,7 +76,7 @@ export const SearchBooksPage = () => {
                         <div className="col-4">
                             <div className="dropdown">
                                 <button 
-                                    className="btn btn-secondary dropdown-toggle" 
+                                    className="btn btn-dark dropdown-toggle" 
                                     type="button" 
                                     id="dropdownMenuButton1" 
                                     data-bs-toggle="dropdown" 

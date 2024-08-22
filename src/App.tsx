@@ -8,6 +8,9 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { BookCheckOutPage } from './layouts/BookCheckOutPage/BookCheckOutPage';
 import { LoginPage } from './layouts/UserPage/LoginPage';
 import { TopBooksPage } from './layouts/SearchBooksPage/TopBooksPage';
+import { ShelfPage } from './layouts/ShelfPage/ShelfPage';
+import { MessagePage } from './layouts/MessagePage/MessagePage';
+import { ManageLibrary } from './layouts/AdminPage/ManageLibrary';
 
 export const App = () => {
   const location = useLocation();
@@ -24,6 +27,9 @@ export const App = () => {
           <Route path='/top-books' element={<TopBooksPage />} />
           <Route path='/check-out/:bookId' element={<BookCheckOutPage />} />
           <Route path='/login' element={<LoginPage />} />
+          <Route path='/shelf' element={<ShelfPage/>}></Route>
+          <Route path='/message' element={<MessagePage/>}></Route>
+          <Route path='/admin' element={<ManageLibrary/>}></Route>
         </Routes>
       </div>
 

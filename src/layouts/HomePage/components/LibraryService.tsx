@@ -17,7 +17,7 @@ export const LibraryService = () => {
                     <div className="d-grid gap-2 justify-content-md-start mb-4 mb-lg-3">
                     {
                                 getCookie !== undefined ?
-                                <Link className="btn buttonCustom" to="#" style={{fontSize:20}}>Hello</Link>
+                                <Link className="btn buttonCustom" to="/message" style={{fontSize:20}}>Services</Link>
                                 :
                                 <Link className="btn buttonCustom" to="/login" style={{fontSize:20}}>Sign up</Link>
                             }

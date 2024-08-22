@@ -1,5 +1,12 @@
 import React from "react";
 import { ReviewModel } from "../models/ReviewModel";
+import { ReviewRequestModel } from "../models/ReviewRequestModel";
+
+interface Result{
+    review:ReviewModel[];
+    totalPages:number;
+    totalElements:number;
+}
 
 export async function getAvgStar(bookId:number) {
     const baseUrl:string = `http://localhost:8080/api/reviews/search/findAverageRatingByBookId?bookId=${bookId}`;
@@ -18,9 +25,10 @@ export async function getAvgStar(bookId:number) {
     
 }
 
-export async function getBookReview(bookId:number) {
-    
-    const baseUrl:string = `http://localhost:8080/api/reviews/search/findByBookId?bookId=${bookId}`;
+export async function getBookReview(bookId:number,page:number):Promise<Result> {
+    const loadReviews:ReviewModel[] = [];
+
+    const baseUrl:string = `http://localhost:8080/api/reviews/search/findByBookId?bookId=${bookId}&size=3&page=${page}`;
 
     const responseReviews = await fetch(baseUrl);
 
@@ -32,8 +40,9 @@ export async function getBookReview(bookId:number) {
 
     const responseData = responseJsonReview._embedded.reviews;
 
-    const loadReviews:ReviewModel[] = [];
+    const responsePages = responseJsonReview.page.totalPages;
 
+    const responseElements = responseJsonReview.page.totalElements;
 
     for(const key in responseData){
         loadReviews.push({
@@ -46,5 +55,55 @@ export async function getBookReview(bookId:number) {
         })
     }
 
-    return loadReviews;
+    return {review:loadReviews, totalPages:responsePages, totalElements:responseElements};
+}
+
+export async function getUserReviewBook(bookId:number,token:string | undefined) {
+    const baseUrl:string = `http://localhost:8080/api/reviews/by-user?bookId=${bookId}`;
+
+    if(token === undefined){
+        return false;
+    }
+
+    const response = await fetch(baseUrl,{
+        method:"GET",
+        headers:{
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if(!response.ok){
+        throw new Error('something wrong!!!');
+    }
+
+    const data = response.json();
+
+    return data;
+}
+
+export async function createReview(token:string | undefined,rating:number,bookId:number | undefined,description:string) {
+    const baseUrl:string = `http://localhost:8080/api/reviews/create-review`;
+
+    if(token === undefined || bookId === undefined){
+        return;
+    }
+
+    const requestModel = new ReviewRequestModel(rating,bookId,description);
+
+    const response = await fetch(baseUrl,{
+        method:"POST",
+        headers:{
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestModel)
+    })
+
+    if(!response.ok){
+        throw new Error('something wrong!!!');
+    }
+    
+    return "review success";
+    
 }

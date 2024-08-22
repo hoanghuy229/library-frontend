@@ -18,18 +18,25 @@ export const TopBooks:React.FC<{book: BookModel}> = (props) => {
 
 
     return(
-        <div className="cardTopBooks">
-            <div className="photoTopBooks">
-                <img src={props.book.image} alt={props.book.title} />
+            <div className="cardTopBooks">
+                <div className="photoTopBooks">
+                    <img src={props.book.image} alt={props.book.title} />
+                </div>
+                <div className="descriptionTopBooks">
+                    <h3>{props.book.title}</h3>
+                    <h4 className="mt-3">{props.book.author}</h4>
+                    <h1>{StarReview(totalStar,1.5)}</h1>
+                    <h5 className="mt-3">copies: {props.book.copies}</h5>
+                    <h5 className="mt-3 mb-3">copies available: {props.book.copiesAvailable}</h5>
+                    {
+                        props.book.isActived ?
+                        <Link to={`/check-out/${props.book.id}`}>
+                            <button>View Details</button>
+                        </Link>
+                        :
+                        <Link to='#' className="btn btn-danger">Unavailable</Link>
+                    }
+                </div>
             </div>
-            <div className="descriptionTopBooks">
-                <h3>{props.book.title}</h3>
-                <h4 className="mt-3">{props.book.author}</h4>
-                <h1>{StarReview(totalStar,1.5)}</h1>
-                <h5 className="mt-3">copies: {props.book.copies}</h5>
-                <h5 className="mt-3 mb-3">copies available: {props.book.copiesAvailable}</h5>
-                <Link to={`/check-out/${props.book.id}`}><button>View Details</button></Link>
-            </div>
-        </div>
     )
 }

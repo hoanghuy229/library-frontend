@@ -7,9 +7,10 @@ export class BookModel {
     copiesAvailable?:number;
     category?:string;
     image?:string;
+    isActived:boolean;
 
     constructor(id:number, title:string, author:string, 
-        description:string, copies:number, copiesAvailable:number, category:string,image:string){
+        description:string, copies:number, copiesAvailable:number, category:string,image:string,isActived:boolean){
             this.id = id;
             this.author = author;
             this.title = title;
@@ -18,5 +19,6 @@ export class BookModel {
             this.copiesAvailable = copiesAvailable;
             this.category = category;
             this.image = image;
+            this.isActived = isActived;
     }
 }

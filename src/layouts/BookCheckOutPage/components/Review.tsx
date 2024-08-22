@@ -1,6 +1,6 @@
 import React from "react";
-import { ReviewModel } from "../../models/ReviewModel";
-import { StarReview } from "../../utils/StarReview";
+import { ReviewModel } from "../../../models/ReviewModel";
+import { StarReview } from "../../../utils/StarReview";
 import { format } from 'date-fns';
 
 export const Review:React.FC<{review:ReviewModel}> = (props) => {
