@@ -144,7 +144,7 @@ export const BookCheckOutPage = () => {
                                     totalStars !== 0 ?
                                     <div>{StarReview(totalStars, 2)}</div>
                                     :
-                                    <div>{StarReview(5, 2)}</div>
+                                    <div>{StarReview(0, 2)}</div>
                                 }
                             </div> 
                         </div>

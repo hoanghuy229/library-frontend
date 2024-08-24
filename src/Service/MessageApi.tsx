@@ -8,7 +8,7 @@ interface ResultMessage{
 }
 
 export async function createMessage(token:string | undefined,model:MessageModel) {
-    const baseUrl:string = `http://localhost:8080/api/messages`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/messages`;
 
     const response = await fetch(baseUrl,{
         method:"POST",
@@ -25,7 +25,7 @@ export async function createMessage(token:string | undefined,model:MessageModel)
 }
 
 export async function adminResponse(token:string | undefined, adminMessage:AdminMessageRequest) {
-    const baseUrl:string = `http://localhost:8080/api/messages/admin`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/messages/admin`;
 
     const response = await fetch(baseUrl,{
         method:"PUT",
@@ -43,13 +43,13 @@ export async function adminResponse(token:string | undefined, adminMessage:Admin
 
 export async function getAllMessage(token:string | undefined,currentPage:number):Promise<ResultMessage> {
 
-    const baseUrl:string = `http://localhost:8080/api/messages?page=${currentPage}&size=5`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/messages?page=${currentPage}&size=5`;
 
     return getMessages(token,currentPage,baseUrl);
 }
 
 export async function adminGetMessages(token:string | undefined,currentPage:number):Promise<ResultMessage> {
-    const baseUrl:string = `http://localhost:8080/api/messages/admin?page=${currentPage}&size=5&closed=false`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/messages/admin?page=${currentPage}&size=5&closed=false`;
 
     return getMessages(token,currentPage,baseUrl);
 

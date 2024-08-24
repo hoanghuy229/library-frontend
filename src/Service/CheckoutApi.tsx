@@ -2,7 +2,7 @@ import React from "react";
 
 export async function getUserCurrentLoansCount(token:string | undefined) {
 
-    const baseUrl:string = `http://localhost:8080/api/checkouts/current-loans-count`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/checkouts/current-loans-count`;
 
     if(token === undefined){
         return 0;
@@ -29,7 +29,7 @@ export async function getUserCurrentLoansCount(token:string | undefined) {
 
 export async function UserCheckedOutBook(bookId:number,token: string | undefined) {
 
-    const baseUrl:string = `http://localhost:8080/api/checkouts?bookId=${bookId}`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/checkouts?bookId=${bookId}`;
 
     if(token === undefined){
         return false;
@@ -53,7 +53,7 @@ export async function UserCheckedOutBook(bookId:number,token: string | undefined
 }
 
 export async function checkoutBook(bookId:number,token:string | undefined) {
-    const baseUrl:string = `http://localhost:8080/api/checkouts?bookId=${bookId}`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/checkouts?bookId=${bookId}`;
     
     const response = await fetch(baseUrl,{
         method:"PUT",

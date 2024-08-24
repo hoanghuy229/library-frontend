@@ -13,10 +13,10 @@ export async function changeQuantity(token:string | undefined, bookId:number,val
     let baseUrl:string = '';
 
     if(value.includes('increase')){
-        baseUrl = `http://localhost:8080/api/users/admin/increase-book?bookId=${bookId}`;
+        baseUrl = `${process.env.REACT_APP_API}/api/users/admin/increase-book?bookId=${bookId}`;
     }
     else{
-        baseUrl = `http://localhost:8080/api/users/admin/decrease-book?bookId=${bookId}`;
+        baseUrl = `${process.env.REACT_APP_API}/api/users/admin/decrease-book?bookId=${bookId}`;
     }
 
     const response = await fetch(baseUrl,{
@@ -33,7 +33,7 @@ export async function changeQuantity(token:string | undefined, bookId:number,val
 }
 
 export async function changeBookStatus(token:string | undefined, bookId:number,value:string) {
-    const baseUrl:string = `http://localhost:8080/api/users/admin?bookId=${bookId}&status=${value}`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/users/admin?bookId=${bookId}&status=${value}`;
 
     const response = await fetch(baseUrl,{
         method:"DELETE",
@@ -49,7 +49,7 @@ export async function changeBookStatus(token:string | undefined, bookId:number,v
 }
 
 export async function addBook(token:string | undefined, bookModel:AddBookRequest) {
-    const baseUrl:string = `http://localhost:8080/api/users/admin`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/users/admin`;
 
     const response = await fetch(baseUrl,{
         method:"POST",
@@ -67,7 +67,7 @@ export async function addBook(token:string | undefined, bookModel:AddBookRequest
 
 export async function getBook(bookId:number){
 
-    const baseUrl:string = `http://localhost:8080/api/books/${bookId}`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/books/${bookId}`;
 
     const response = await fetch(baseUrl);
 
@@ -96,7 +96,7 @@ export async function getCarousel(page:number, size:number):Promise<Result> {
     
     const loadedBooks:BookModel[] = [];
 
-    const baseUrl: string = `http://localhost:8080/api/books?page=${page}&size=${size}`;
+    const baseUrl: string = `${process.env.REACT_APP_API}/api/books?page=${page}&size=${size}`;
             
     const response = await fetch(baseUrl);
 
@@ -132,7 +132,7 @@ export async function getTopBook():Promise<BookModel[]> {
 
     let booksResult:BookModel[] = [];
 
-    const baseUrl:string = `http://localhost:8080/api/books/search/findTopRatedBooks?page=0&size=10`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/books/search/findTopRatedBooks?page=0&size=10`;
 
     const response = await fetch(baseUrl);
 
@@ -165,16 +165,16 @@ export async function findBooks(page:number, size:number, searchUrl:string, cate
     
     const loadedBooks:BookModel[] = [];
 
-    let baseUrl: string = `http://localhost:8080/api/books?page=${page}&size=${size}`;
+    let baseUrl: string = `${process.env.REACT_APP_API}/api/books?page=${page}&size=${size}`;
 
     if(searchUrl === '' && categorySelection === 'All Books'){
-        baseUrl = `http://localhost:8080/api/books?page=${page}&size=${size}`;
+        baseUrl = `${process.env.REACT_APP_API}/api/books?page=${page}&size=${size}`;
     }
     else if(categorySelection !== 'All Books' && searchUrl === ''){
-        baseUrl = `http://localhost:8080/api/books/search/findByCategory?category=${categorySelection}&page=${page}&size=${size}`;
+        baseUrl = `${process.env.REACT_APP_API}/api/books/search/findByCategory?category=${categorySelection}&page=${page}&size=${size}`;
     }
     else{
-        baseUrl= `http://localhost:8080/api/books/search/findByTitleContainingOrAuthorContaining?title=${searchUrl}&author=${searchUrl}&page=${page}&size=${size}`;
+        baseUrl= `${process.env.REACT_APP_API}/api/books/search/findByTitleContainingOrAuthorContaining?title=${searchUrl}&author=${searchUrl}&page=${page}&size=${size}`;
     }
             
     const response = await fetch(baseUrl);

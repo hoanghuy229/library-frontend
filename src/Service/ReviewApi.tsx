@@ -9,7 +9,7 @@ interface Result{
 }
 
 export async function getAvgStar(bookId:number) {
-    const baseUrl:string = `http://localhost:8080/api/reviews/search/findAverageRatingByBookId?bookId=${bookId}`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/reviews/search/findAverageRatingByBookId?bookId=${bookId}`;
 
     const responseAvg = await fetch(baseUrl);
 
@@ -28,7 +28,7 @@ export async function getAvgStar(bookId:number) {
 export async function getBookReview(bookId:number,page:number):Promise<Result> {
     const loadReviews:ReviewModel[] = [];
 
-    const baseUrl:string = `http://localhost:8080/api/reviews/search/findByBookId?bookId=${bookId}&size=3&page=${page}`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/reviews/search/findByBookId?bookId=${bookId}&size=3&page=${page}`;
 
     const responseReviews = await fetch(baseUrl);
 
@@ -59,7 +59,7 @@ export async function getBookReview(bookId:number,page:number):Promise<Result> {
 }
 
 export async function getUserReviewBook(bookId:number,token:string | undefined) {
-    const baseUrl:string = `http://localhost:8080/api/reviews/by-user?bookId=${bookId}`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/reviews/by-user?bookId=${bookId}`;
 
     if(token === undefined){
         return false;
@@ -83,7 +83,7 @@ export async function getUserReviewBook(bookId:number,token:string | undefined) 
 }
 
 export async function createReview(token:string | undefined,rating:number,bookId:number | undefined,description:string) {
-    const baseUrl:string = `http://localhost:8080/api/reviews/create-review`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/reviews/create-review`;
 
     if(token === undefined || bookId === undefined){
         return;

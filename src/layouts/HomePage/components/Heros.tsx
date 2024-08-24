@@ -23,7 +23,7 @@ export const Heros = () => {
                                 getCookie !== undefined ?
                                 <Link className="btn buttonCustom" to="#" style={{fontSize:20}}>Hello</Link>
                                 :
-                                <Link className="btn buttonCustom" to="/login" style={{fontSize:20}}>Sign up</Link>
+                                <Link className="btn buttonCustom" to="/login" style={{fontSize:20}}>Sign in</Link>
                             }
                         </div>
                     </div>

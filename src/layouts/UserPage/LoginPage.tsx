@@ -5,7 +5,7 @@ export const LoginPage = () => {
 
 
   const Login = (provider:string) => {
-    window.location.href = `http://localhost:8080/oauth2/authorization/${provider}`;
+    window.location.href = `${process.env.REACT_APP_API}/oauth2/authorization/${provider}`;
   }
 
   return (

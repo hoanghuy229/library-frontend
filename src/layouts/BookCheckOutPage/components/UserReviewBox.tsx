@@ -25,10 +25,10 @@ export const UserReviewBox:React.FC<{isReviewLeft:boolean, getCookies:string | u
             setIcon("bi bi-emoji-angry-fill");
         }
         else if(rate === 2){
-            setIcon("bi bi-emoji-astonished-fill");
+            setIcon("bi bi-emoji-frown-fill");
         }
         else if(rate === 3){
-            setIcon("bi bi-emoji-expressionless-fill");
+            setIcon("bi bi-emoji-neutral-fill");
         }
         else if(rate === 4){
             setIcon("bi bi-emoji-smile-fill");

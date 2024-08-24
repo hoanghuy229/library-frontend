@@ -9,7 +9,7 @@ interface HistoriesResult{
 
 export async function getUserCurrentLoans(token:string | undefined):Promise<ShelfCurrentLoansModel[]> {
     if(token !== undefined){
-        const baseUrl:string = `http://localhost:8080/api/users/current-loans`
+        const baseUrl:string = `${process.env.REACT_APP_API}/api/users/current-loans`
 
         const response = await fetch(baseUrl,{
             method:"GET",
@@ -34,7 +34,7 @@ export async function returnBook(bookId:number,token:string | undefined) {
     if(token === undefined){
         return "error";
     }
-    const baseUrl:string = `http://localhost:8080/api/users/return-book?bookId=${bookId}`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/users/return-book?bookId=${bookId}`;
 
     const response = await fetch(baseUrl,{
         method:"PUT",
@@ -55,7 +55,7 @@ export async function renewLoan(bookId:number,token:string | undefined) {
     if(token === undefined){
         return "error";
     }
-    const baseUrl:string = `http://localhost:8080/api/users/renew-loan?bookId=${bookId}`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/users/renew-loan?bookId=${bookId}`;
 
     const response = await fetch(baseUrl,{
         method:"PUT",
@@ -73,7 +73,7 @@ export async function renewLoan(bookId:number,token:string | undefined) {
 }
 
 export async function getHistories(token:string | undefined,currentPage:number):Promise<HistoriesResult> {
-    const baseUrl:string = `http://localhost:8080/api/users/user-histories?page=${currentPage}&size=5`;
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/users/user-histories?page=${currentPage}&size=5`;
 
     let histories:HistoryModel[] = [];
 

@@ -19,7 +19,7 @@ export const LibraryService = () => {
                                 getCookie !== undefined ?
                                 <Link className="btn buttonCustom" to="/message" style={{fontSize:20}}>Services</Link>
                                 :
-                                <Link className="btn buttonCustom" to="/login" style={{fontSize:20}}>Sign up</Link>
+                                <Link className="btn buttonCustom" to="/login" style={{fontSize:20}}>Sign in</Link>
                             }
                     </div>
                 </div>

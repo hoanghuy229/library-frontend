@@ -64,7 +64,7 @@ export const NavBar = () => {
               <li className='nave-item m-1'>
                 {
                   getJwt !== undefined ? 
-                  <NavLink className='btn btn-dark' to='#' type="button" onClick={logout}>Log out</NavLink>
+                  <NavLink className='btn btn-dark' to='#' type="button" onClick={logout}>Sign out</NavLink>
                   :
                   <NavLink className='btn btn-dark' to='/login' type="button">Sign In</NavLink>
                 }
