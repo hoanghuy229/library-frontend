@@ -11,6 +11,7 @@ import { TopBooksPage } from './layouts/SearchBooksPage/TopBooksPage';
 import { ShelfPage } from './layouts/ShelfPage/ShelfPage';
 import { MessagePage } from './layouts/MessagePage/MessagePage';
 import { ManageLibrary } from './layouts/AdminPage/ManageLibrary';
+import { PaymentResultPage } from './layouts/BookCheckOutPage/PaymentResultPage';
 
 export const App = () => {
   const location = useLocation();
@@ -30,6 +31,7 @@ export const App = () => {
           <Route path='/shelf' element={<ShelfPage/>}></Route>
           <Route path='/message' element={<MessagePage/>}></Route>
           <Route path='/admin' element={<ManageLibrary/>}></Route>
+          <Route path='/payment-result/:bookId' element={<PaymentResultPage/>}></Route>
         </Routes>
       </div>
 

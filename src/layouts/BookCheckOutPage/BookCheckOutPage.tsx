@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BookModel } from "../../models/BookModel";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { SpinnerLoading } from "../../utils/SpinnerLoading";
 import { getBook } from "../../Service/BookApi";
 import { StarReview } from "../../utils/StarReview";
@@ -8,7 +8,7 @@ import { CheckOutAndReviewBox } from "./components/CheckOutAndReviewBox";
 import { ReviewModel } from "../../models/ReviewModel";
 import { getAvgStar, getBookReview, getUserReviewBook } from "../../Service/ReviewApi";
 import { LatestReview } from "./components/LatestReview";
-import { getUserCurrentLoansCount, UserCheckedOutBook, checkoutBook } from "../../Service/CheckoutApi";
+import { getUserCurrentLoansCount, UserCheckedOutBook, checkoutBook, createPayment } from "../../Service/CheckoutApi";
 import Cookies from "js-cookie";
 import { Pagination } from "../../utils/Pagination";
 
@@ -28,6 +28,7 @@ export const BookCheckOutPage = () => {
     const [currentReviewPage,setCurrentReviewPage] = useState(1);
     const [totalReviewPages,setTotalReviewPages] = useState(0);
     const [totalReviewElements,setTotalReviewElements] = useState(0);
+
     const {bookId} = useParams();
 
     const getCookie = Cookies.get('jwt');
@@ -102,8 +103,9 @@ export const BookCheckOutPage = () => {
     },[])
 
     const checkoutButtonClicked = async () => {
-        const result = await checkoutBook(bookIdNumber,getCookie);
-        setIsBookCheckout(result);
+        const payment = await createPayment(getCookie,10000*1000,bookIdNumber);
+        const paymentUrl = await payment.url;
+        window.location.href = paymentUrl; // Chuyển hướng đến trang thanh toán của VNPay
     }
 
     const paginating = (pageNumber:number) => {setCurrentReviewPage(pageNumber)}

@@ -4,6 +4,7 @@ import { getUserCurrentLoans, renewLoan, returnBook } from "../../../Service/She
 import { SpinnerLoading } from "../../../utils/SpinnerLoading";
 import { Link } from "react-router-dom";
 import { LoansModal } from "./LoansModal";
+import { createPayment } from "../../../Service/CheckoutApi";
 
 export const Loans:React.FC<{getCookies:string | undefined}> = (props) => {
 
@@ -41,11 +42,9 @@ export const Loans:React.FC<{getCookies:string | undefined}> = (props) => {
     }
 
     async function renewBookLoan(bookId:number,token:string | undefined) {
-        const rs = await renewLoan(bookId,token);
-        if(rs.includes("renew loan success")){
-            setCheckout(!checkout);
-            window.alert(rs);
-        }
+        const payment = await createPayment(token,10000*1000,bookId);
+        const paymentUrl = await payment.url;
+        window.location.href = paymentUrl; // Chuyển hướng đến trang thanh toán của VNPay
     }
 
     return (

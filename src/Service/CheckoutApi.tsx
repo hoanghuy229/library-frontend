@@ -69,3 +69,28 @@ export async function checkoutBook(bookId:number,token:string | undefined) {
 
     return true;
 }
+
+export async function createPayment(token:string | undefined, amount:number,bookId:number) {
+    const baseUrl:string = `${process.env.REACT_APP_API}/api/payments?amount=${amount}&bookId=${bookId}`;
+
+    const response = await fetch(baseUrl,{
+        method:"GET",
+        headers:{
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if(!response.ok){
+        throw new Error('something wrong!!!');
+    }
+
+    const data = await response.json();
+
+    const dataStatus = data.status;
+    const dataMessage = data.messages;
+    const dataURL = data.url;
+
+    return {status:dataStatus, message:dataMessage, url:dataURL}
+
+}
