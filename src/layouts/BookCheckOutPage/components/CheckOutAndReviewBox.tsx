@@ -65,7 +65,7 @@ export const CheckOutAndReviewBox:React.FC<{ book?:BookModel, currentLoansCount:
                         setIsReviewLeft={props.setIsReviewLeft}
                     />
                     :
-                    <p>Sign in to be able to leave a review</p>
+                    <p>Sign in to create a review</p>
                 }
                 </div>
         </div>
